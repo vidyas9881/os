@@ -1,0 +1,139 @@
+Assignment 1 
+
+Problems: 
+
+Section 1:
+
+    1. List all the files and sub directories of the directory /bin.
+    =cd /bin
+    
+    2. List all the files including hidden files in your current directory.
+    =ls -a
+    
+    3. List all the files starting with letter ‘r’ in your current directory.
+    =ls *r
+    
+    4. List all the files having three characters in their names, from your current directory.
+    =ls ???
+    
+    5. List all the files with extension .doc in your current directory.
+    =ls *.doc
+    
+    6. List all the files having the first letter of their name within the range ‘l’ to‘s’, from
+       your current directory.
+    =ls [l-s]*
+    
+   
+    7. Copy the contents of file text1 to another file text2.
+    =cp text1 text2
+    
+    8. Append the contents of file text2 to file text1.
+    =cat text2 >> text1
+    
+    9. Count the number of files in the current directory.
+    =ls -1 | wc -l 
+    
+    10. Display the output of command ls –l to a file and on the output screen.
+    =ls -l >> text3
+    
+    11. From file text1 print all lines starting from 10th line.
+    =sed 1,10d text3
+    
+    
+Section 2:
+
+    1. Count the total number of words in file text1.
+    =wc -w text1
+    
+    2. List the contents of ls command page wise. 
+    =ls | less   
+
+    3. Using one single command, display the output of “who” and “pwd” commands.
+    =who;pwd
+
+    4. Display the system date in following format:
+       	Today is Friday, 17 May 96
+      =date+ "Today is %A, %d %B %y" 	
+      
+
+    5. Use find command to locate the following within your home directory tree:
+        a) Files with extension .c or .pl
+        =find ./ -type f -name *.c -o -name *.pl
+        
+        b) Directories having permission 755
+        =find ./ -type d -perm 755
+        
+        c) Files having permission 655
+        =find ./ -type d -perm 655
+        
+        d) Files having inode number 12122
+        =find ./ -inum 2757968 -type f
+        
+        e) Files which have not been accessed for more than a year and save the list in Old_File
+        =find ./ -maxdepth 1 -mtime +365
+         
+        f) Files whose size is greater than 1024 bytes
+        =find ./ -size +1024
+
+
+
+
+
+Section 3 :	
+vidyas@vidyas:~$ vi Data1.txt
+vidyas@vidyas:~$ ls
+1024     abc.c        Assignment2_225_DataBaseTechnologies.zip  Batch_B2    Data1.txt  Documents  ex2        file7.txt  lll.doc      out.txt   rrr.txt    test      text1.txt  xyz.c
+123      abcgjj.txt   Assignment_No2                            bbb.txt     Data2.txt  Downloads  file4.txt  hhh.doc    Music        Pictures  snap       test6     text2.txt
+aaa.doc  abcipip.txt  Batch_B1                                  bjjgac.txt  Desktop    ex1        file5      if_else    MyData2.txt  Public    Templates  test.txt  Videos
+vidyas@vidyas:~$ vi MyData2.txt
+vidyas@vidyas:~$ cat MyData2.txt
+Some text
+vidyas@vidyas:~$ vi MyData2.txt
+vidyas@vidyas:~$ cat MyData2.txt
+Some text
+vidyas@vidyas:~$ vi Data2.txt
+vidyas@vidyas:~$ cat MyData2.txt
+Some text
+vidyas@vidyas:~$ cat Data2.txt
+Unix Unix Unix Unix Unix
+Unix is a multi user operating system, Unix is multi tasking o/perating system
+Everything on Unix is a file.
+	Unix File structure is hierarchical like an upside down tree.
+	Regualar files cannot contain another file, or directory
+	Directory File Contains directory(s) and/or file(s) within it
+	Device files are used to represent physical devices.
+	Symbolic link is an indirect pointer to a file
+vidyas@vidyas:~$ vi Data2.txt
+vidyas@vidyas:~$ cat Data2.txt
+	Unix File structure is hierarchical like an upside down tree.
+	Regualar files cannot contain another file, or directory
+	Directory File Contains directory(s) and/or file(s) within it
+	Device files are used to represent physical devices.
+	Symbolic link is an indirect pointer to a file
+Unix Unix Unix Unix Unix
+Unix is a multi user operating system, Unix is multi tasking o/perating system
+Everything on Unix is a file.
+vidyas@vidyas:~$ vi Data2.txt
+vidyas@vidyas:~$ cat Data2.txt
+	Symbolic link is an indirect pointer to a file
+	Unix File structure is hierarchical like an upside down tree.
+	Regualar files cannot contain another file, or directory
+	Directory File Contains directory(s) and/or file(s) within it
+	Device files are used to represent physical devices.
+	Symbolic link is an indirect pointer to a file
+Unix Unix Unix Unix Unix
+Unix is a multi user operating system, Unix is multi tasking o/perating system
+Everything on Unix is a file.
+vidyas@vidyas:~$ vi Data2.txt
+vidyas@vidyas:~$ cat Data2.txt
+	Symbolic link is an indirect pointer to a file
+	UnixOS File structure is hierarchical like an upside down tree.
+	Regualar files cannot contain another file, or directory
+	Directory File Contains directory(s) and/or file(s) within it
+	Device files are used to represent physical devices.
+	Symbolic link is an indirect pointer to a file
+UnixOS UnixOS UnixOS UnixOS UnixOS
+UnixOS is a multi user operating system, UnixOS is multi tasking o/perating system
+Everything on UnixOS is a file.
+vidyas@vidyas:~$
+    

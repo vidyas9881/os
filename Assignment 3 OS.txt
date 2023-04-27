@@ -1,0 +1,133 @@
+Q.1 Q.1 Keep accepting an input message from the user and displaying it till the user does not type 'Bye' (not case sensitive) using a Shell script.
+#1/bin/bash
+
+read -p "Enter the input :: " input
+
+echo $input | grep -iw "bye" > /dev/null
+
+while [ $? -ne 0 ]
+do
+   read -p "Enter the input :: " input
+
+echo $input | grep -iw "bye" > /dev/null
+done
+
+
+vidyas@vidyas:~/os$ bash ass3a.sh
+Enter the input :: ByE
+vidyas@vidyas:~/os$ bash ass3a.sh
+Enter the input :: ads 
+Enter the input :: abc
+Enter the input :: byE
+vidyas@vidyas:~/os$ 
+
+Q.2 Write a shell script to reverse an integer (e.g. 1234 to 4321).
+#!/bin/bash
+
+echo "enter the number"
+read value 
+reverse=0
+remainder=0
+while [ $value -ne 0 ];
+do
+      remainder=$(($value%10))
+      reverse=$(($reverse*10+$(($remainder))))
+      value=$(($value/10))
+done
+echo "reversed no is $reverse"
+
+vidyas@vidyas:~/os$ bash ass3b.sh
+enter the number
+12345
+reversed no is 54321
+vidyas@vidyas:~/os$ bash ass3b.sh
+enter the number
+987654321
+reversed no is 123456789
+
+----------------------------------------------------------------------------------------------------
+ Q.3 Create a looping menu to accept either (1) Simple interest or (2) Compound interest or (3) Exit as the option from the user. If the user selects Simple interest, accept principal amount (p), time (in years) (n) and rate of interest (r). Display simple interest using the formula interest = pnr / 100. If the user selected compound interest, also accept how many times interest was applied/calculated every year (t). Display compound interest using the formula interest = p x (1 + r/n) raised to the power (n x t)
+
+#!/bin/bash
+
+
+while [ 1 ]
+do 
+echo Enter Choice
+echo 1. Simple Interest
+echo 2. Compound Interest 
+echo 0. Exit
+read choice
+
+if [ $choice -eq 1 ]
+then
+   echo "Enter the principal value:: "
+   read p
+   echo "Enter the rate of interest:: "
+   read r 
+   echo "Enter the Time period In Year:: "
+   read t
+
+    s=$(($p * $t * $r / 100))
+
+   echo "Principal equal to ::"
+   echo $s
+
+elif [ $choice -eq 2 ]
+then
+   echo "Enter the principal value:: "
+   read p
+   echo "Enter the rate of interest:: "
+   read r 
+   echo "Enter the Time period In Year:: "
+   read t
+   echo "No of times CI calculated per Year::"
+   read n
+
+   power=$(($n * $t))
+
+   ci=$( echo "scale=2; ( $p * ( ( 1 + ( $r / ( $n * 100 ) ) ) ^ $power )) - $p" | bc)
+
+echo "Compound Interest "
+echo $ci
+else
+break
+fi
+done
+vidyas@vidyas-VirtualBox:~$ bash ass3c.sh
+Enter Choice
+1. Simple Interest
+2. Compound Interest
+0. Exit
+1
+Enter the principal value:: 
+1000
+Enter the rate of interest:: 
+10
+Enter the Time period In Year:: 
+2
+Principal equal to ::
+200
+Enter Choice
+1. Simple Interest
+2. Compound Interest
+0. Exit
+2
+Enter the principal value:: 
+1000 
+Enter the rate of interest:: 
+10
+Enter the Time period In Year:: 
+2
+No of times CI calculated per Year::
+1
+Compound Interest 
+210.00
+Enter Choice
+1. Simple Interest
+2. Compound Interest
+0. Exit
+0
+vidyas@vidyas-VirtualBox:~$ 
+
+

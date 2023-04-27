@@ -1,0 +1,269 @@
+vidyas@vidyas-VirtualBox:~$ find ./ -maxdepth 1 -type d
+./
+./Public
+./Downloads
+./Practice
+./.cache
+./.config
+./Pictures
+./snap
+./.gnupg
+./Desktop
+./Documents
+./.ssh
+./.local
+./Music
+./Videos
+./Templates
+
+vidyas@vidyas-VirtualBox:~$ ls;ls -l|grep ^d|wc -l
+ Data1.txt   Desktop     Downloads       Music         Pictures   Public     sample.pl   Templates   test1.sh   text1   text3
+ Data2.txt   Documents  'Hello World!'   Mydata2.txt   Practice   sample.c   snap        test1       test.sh    text2   Videos
+10
+
+vidyas@vidyas-VirtualBox:~$ who|cut -d " " -f1|fgrep "vid"
+vidyas
+
+vidyas@vidyas-VirtualBox:~$ cat loginUser.sh
+#!bin/bash
+
+a=`who|cut -d "" -f1|fgrep vidyas|wc -l`
+if test $a -ne 0
+then
+	echo  "logged in"
+else
+	echo  "not logged in"
+fi
+
+vidyas@vidyas-VirtualBox:~$ bash loginUser.sh
+logged in
+
+vidyas@vidyas-VirtualBox:~$ cat ques5.sh
+#!/bin/bash
+
+var1=black
+echo "$var1 belt is associated with karate"
+vidyas@vidyas-VirtualBox:~$ bash ques5.sh
+black belt is associated with karate
+vidyas@vidyas-VirtualBox:~$ cat ques6.sh
+#!/bin/bash
+
+		read -p "enter file name to create data: " fname
+		read -p "enter number of line to show data: " x
+		clear
+		 if [ -f $fname ]
+  		then
+  		        echo "file found"
+  	           if [ `ls -l $fname|cut -c2`==r ]
+          		then
+              	      echo "file is readable your file is \n"
+              	head $fname -n $x
+      		fi
+  		fi
+file found
+file is readable your file is \n
+
+UNIX UNIX UNIX UNIX UNIX
+Unix is multi user operating system, Unix is multi tasking o/perating system
+Everything on Unix is a file.
+Unix File structure is hierarchical like an upside down tree.
+
+vidyas@vidyas-VirtualBox:~$ cat ques7.sh
+#!/bin/bash
+ 
+ while [ 1 ]
+   do
+   echo "1 for make a file"
+   echo "2 for display content"
+   echo "3 for copy a file"
+   echo "4 form rename a file"
+   echo "5 for delete a file"
+   echo "6 for exit"
+  read -p "choice: " ch
+  case $ch in
+          1)read -p "file name: " fname
+              vi $fname ;;
+          2)read -p "file name: " fname
+              if [ -f $fname ]
+                  then
+                  cat $fname
+              else
+                  echo "file not exist"
+               fi;;
+
+          3)read -p "source name: " sname
+               if [ ! -f $sname ]
+               then
+                   echo "file not exist"
+               else
+                   read -p "target name: " tname
+                   cp $sname $tname
+               fi;;
+          4)read -p "source name: " sname
+             if [ -f $sname ]
+           then
+              read -p "save as: " tname
+              mv $sname $tname
+           else
+                echo "file not exist"
+                fi;;
+
+          5)read -p "file to delete" fname
+              if [ -f $fname ]
+              then
+              rm $fname
+              else
+              echo "no file  exist for deletion"
+            fi;;
+
+        6)break;;
+  esac done
+vidyas@vidyas-VirtualBox:~$ bash ques7.sh
+1 for make a file
+2 for display content
+3 for copy a file
+4 form rename a file
+5 for delete a file
+6 for exit
+choice: 1
+file name: txt1.txt
+1 for make a file
+2 for display content
+3 for copy a file
+4 form rename a file
+5 for delete a file
+6 for exit
+choice: 2
+file name: txt1.txt
+Hello world!!
+1 for make a file
+2 for display content
+3 for copy a file
+4 form rename a file
+5 for delete a file
+6 for exit
+choice: 3
+source name: txt2.txt
+file not exist
+1 for make a file
+2 for display content
+3 for copy a file
+4 form rename a file
+5 for delete a file
+6 for exit
+choice: 6
+vidyas@vidyas-VirtualBox:~$ cat ques8.sh
+#!/bin/bash
+
+while [ 1 ]
+do
+	read -p "enter first number:" fnum
+	read -p "enter second number:" snum
+	echo "1. Addition 2. Subtraction 3. Multiplication 4.Division 5.Exit"
+	read -p "enter choice of operation: " choice
+	if [ $choice -eq 1 ]
+	then
+		echo "$((fnum + snum)) " | bc
+	elif [ $choice -eq 2 ]
+	then
+		echo "$((fnum -snum))" | bc
+	elif [ $choice -eq 3 ]
+	then
+		echo "$((fnum * snum))" | bc
+	elif [ $choice -eq 4 ]
+	then
+		echo "$((fnum/snum))" | bc
+	else
+		break
+	fi
+done
+
+vidyas@vidyas-VirtualBox:~$ bash ques8.sh
+enter first number:10
+enter second number:10
+1. Addition 2. Subtraction 3. Multiplication 4.Division 5.Exit
+enter choice of operation: 3
+100
+enter first number:5
+enter second number:5
+1. Addition 2. Subtraction 3. Multiplication 4.Division 5.Exit
+enter choice of operation: 5
+
+vidyas@vidyas-VirtualBox:~$ cat ques9.sh
+#!/bin/bash
+
+read -p "Enter filename: " file
+
+cp $file /home/chandan/backup/${file}.backup
+rm $file
+vidyas@vidyas-VirtualBox:~$ bash ques9.sh
+Enter filename: Data1.txt
+vidyas@vidyas-VirtualBox:~$ bash ques9.sh
+Enter filename: Data1.txt
+cp: cannot stat 'Data1.txt': No such file or directory
+rm: cannot remove 'Data1.txt': No such file or directory
+
+vidyas@vidyas-VirtualBox:~$ cat ques10.sh
+#/bin/bash
+read -p "Enter a string " str
+read -p "Enter file to be copied " file
+
+sed  "s/${str}//g" "$file" > `echo ${file}.out`
+echo "File saved as ${file}.out"
+vidyas@vidyas-VirtualBox:~$ ./ques10.sh
+Enter a string HelloWorld
+Enter file to be copied Data1.txt
+File saved as Data1.txt.out
+vidyas@vidyas-VirtualBox:~$ 
+vidyas@vidyas-VirtualBox:~$ cat ques11.sh
+#!/bin/bash
+echo "        *
+  * * * * * * * * *
+        *"
+vidyas@vidyas-VirtualBox:~$ ./ques11.sh
+        *
+  * * * * * * * * *
+        *
+vidyas@vidyas-VirtualBox:~$ 
+vidyas@vidyas-VirtualBox:~$ cat ques12.sh
+#!/bin/bash
+read -p "Enter number whose factorial is to be calculated: " i
+j=$i
+a=1
+for (( a=1;i>a;i-- )) 
+do
+	j=$(($j * (($i-$a))))
+done
+echo $j
+vidyas@vidyas-VirtualBox:~$ ./ques12.sh
+Enter number whose factorial is to be calculated: 5
+120
+vidyas@vidyas-VirtualBox:~$ cat test1.sh
+#!/bin/bash
+rows=4
+for((i=1; i<=rows; i++))
+do
+  for((j=1; j<=i; j++))
+  do
+    echo -n "* "
+  done
+  echo
+done
+vidyas@vidyas-VirtualBox:~$ ./test1.sh
+* 
+* * 
+* * * 
+* * * * 
+vidyas@vidyas-VirtualBox:~$ cat ques14.sh
+#!/bin/bash
+
+day=`date +%A`
+
+if [[ day = "Sunday" || day = "Saturday" ]]
+then
+	echo "$day is not working day"
+else
+	echo "$day is working day"
+fi
+vidyas@vidyas-VirtualBox:~$ bash ques14.sh
+Sunday is working day
